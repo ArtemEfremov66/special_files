@@ -3,6 +3,7 @@ package org.example;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.opencsv.CSVReader;
 import com.opencsv.bean.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -60,7 +61,7 @@ public class Main {
     }
 
     public static List<Employee> parseCSV(String[] title, String name) {
-        try (Reader reader = new BufferedReader(new FileReader(name))) {
+        try (CSVReader reader = new CSVReader(new FileReader(name))) {
             ColumnPositionMappingStrategy<Employee> strategy = new ColumnPositionMappingStrategy<>();
             strategy.setType(Employee.class);
             strategy.setColumnMapping(title);
